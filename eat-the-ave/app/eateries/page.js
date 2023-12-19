@@ -1,12 +1,117 @@
 "use client";
 
-import Container from "../components/Container";
-import AllEateryCards from "./pageCards";
+import { client } from "@/sanity/lib/client";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import DropDown from "../components/Dropdown";
+import EateryCard from "../components/Eatery";
+import Loader from "../components/Loader";
+
+async function getEateries({filterString, sortString}) {
+  if (sortString === "items") {
+    sortString = "length(itemsHad)"
+  }
+
+  const query1 = `*[_type == "restaurant" && status == 0${filterString}] | order(${sortString}) {
+    name,
+    address,
+    status,
+    type[] {
+      name
+    },
+    itemsHad,
+    itemsPlanned,
+    "slug":slug.current
+  }`;
+  console.log(query1);
+  const pastEateries = await client.fetch(query1);
+
+  if (sortString === "length(itemsHad)") {
+    sortString = "length(itemsPlanned)"
+  }
+
+  const query2 = `*[_type == "restaurant" && status != 0${filterString}] | order(${sortString}) {
+    name,
+    address,
+    status,
+    type[] {
+      name
+    },
+    itemsHad,
+    itemsPlanned,
+    "slug":slug.current
+  }`;
+  const futureEateries = await client.fetch(query2);
+
+  return [pastEateries, futureEateries];
+}
 
 export default function Eats() {
+  const [sort, setSort] = useState("Name");
+  const [filter, setFilter] = useState("None");
+  const [eateries, setEateries] = useState([[],[]]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const filterString = (filter === "None") ? "" : ` && "${filter}" in type[].name`;
+    console.log(filterString);
+    let sortString;
+    if (sort === "Name") {
+      sortString = "name asc";
+    } else if (sort === "Status") {
+      sortString = "status asc";
+    } else {
+      sortString = "items"
+    }
+    console.log(sortString)
+
+    async function fetchData() {
+      const content = await getEateries({filterString, sortString});
+      setEateries(content);
+      setLoading(false);
+    }
+    fetchData();
+  }, [sort, filter]);
+
   return (
-    <Container>
-      <AllEateryCards/>
-    </Container>
+    <div className="space-y-2">
+      <div className="flex space-x-5 py-4 justify-end">
+        <div className="flex">
+          <p className="black px-2 py-1.5">Sort by</p>
+          <DropDown options={["Name", "Status", "Menu Items"]} setOption={setSort} selected={sort} />
+        </div>
+        <div className="flex">
+          <p className="black px-2 py-1.5">Filter</p>
+          <DropDown 
+            options={["None", "Asian Noodle Soup", "Cold Sweet Drink", "Meat Stuff", "Sweet Treat", "Other Asian", "Other Other"]} 
+            setOption={setFilter}
+            selected={filter}
+          />
+        </div>
+      </div>
+      <div className="py-4 space-y-4">
+        <p className="py-1 text-xl font-semibold">Places I've Eaten</p>
+        {loading &&
+          <div className="p-24">
+            <Loader />
+          </div>
+        }
+        {eateries[0].map((eatery) => (
+          <EateryCard key={eatery.slug} rest={eatery} />
+        ))}
+      </div>
+      <div className="py-4 space-y-4">
+        <p className="py-1 text-xl font-semibold">Future Eats</p>
+        {loading &&
+          <div className="p-24">
+            <Loader />
+          </div>
+        }
+        {eateries[1].map((eatery) => (
+          <EateryCard key={eatery.slug} rest={eatery} />
+        ))}
+      </div>
+    </div>
   );
 }
+

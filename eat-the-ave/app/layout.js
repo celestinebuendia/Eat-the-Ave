@@ -1,6 +1,7 @@
 import { Inter, Rock_Salt } from 'next/font/google'
 import './globals.css'
 import Navbar from './components/Navbar'
+import Container from './components/Container'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        {children}
+        <Container>
+          {children}
+        </Container>
       </body>
     </html>
   )

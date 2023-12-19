@@ -19,7 +19,7 @@ async function getMenuItems() {
 export default async function Eats() {
   const items = await getMenuItems();
   return (
-    <Container>
+    <div>
       <input type="checkbox"/>
       <label>Show planned eats</label>
       <div className="space-y-2">
@@ -27,6 +27,6 @@ export default async function Eats() {
           <ItemCard key={item.name} item={item}/>
         ))}
       </div>
-    </Container>
+    </div>
   )
 }

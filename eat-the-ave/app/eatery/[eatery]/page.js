@@ -15,12 +15,22 @@ async function getEatery(slug) {
   return eatery;
 }
 
-export default async function BlogPost({ params }) {
+export default async function EateryPage({ params }) {
   const eatery = await getEatery(params.eatery);
   return (
     <Container>
       {eatery.map((eatery) => (
-        <EateryCard key={eatery.slug} rest={eatery}/>
+        <div key={eatery.slug}>
+          <h2 className="text-lg font-semibold">{eatery.name}</h2>
+          <p className="line-clamp-1 text-sm text-primary-500">
+              {eatery.address}
+          </p>
+          {eatery.type.map((type) => (
+            <p key={type.name} className="line-clamp-1 text-sm text-primary-500">
+              {type.name}
+            </p>
+          ))}
+        </div>
       ))}
     </Container>
   );
