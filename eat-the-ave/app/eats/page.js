@@ -44,7 +44,7 @@ export default function Eats() {
     if (sort === "Name") {
       sortString = "name asc";
     } else if (sort === "Rating") {
-      sortString = "rating asc";
+      sortString = "rating desc";
     } else {
       sortString = "restaurant->name asc";
     }

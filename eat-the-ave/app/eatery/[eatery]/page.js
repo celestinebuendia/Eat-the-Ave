@@ -26,7 +26,7 @@ export default async function EateryPage({ params }) {
   return (
     <div>
       <EateryHeader eatery={eatery[0]}/>
-      <div className="border border-white p-5 rounded-md mx-12 my-6">
+      <div className="border border-white p-5 rounded-md mx-16 my-6">
         {eatery[0].thoughts}
       </div>
       <div className="grid grid-cols-2">
@@ -68,7 +68,7 @@ export function EateryHeader({eatery}) {
   return (
     <div className="grid grid-cols-3 space-x-4">
       <div className="border border-white p-4 rounded-md flex justify-between col-span-2">
-        <div className="space-y-2">
+        <div className="flex flex-col justify-center space-y-3">
           <h2 className="text-4xl font-semibold">{eatery.name}</h2>
           <p className="text-primary-400">{eatery.address}</p>
         </div>
@@ -80,7 +80,7 @@ export function EateryHeader({eatery}) {
           ))}
         </div>
       </div>
-      <div className="border border-white p-4 rounded-md space-y-2">
+      <div className="flex flex-col justify-center border border-white p-4 rounded-md space-y-2 text-center">
         <p className="text-2xl font-semibold">Status: {stringStatus}</p>
         <p className="text-primary-400 text-lg">{getStatusString(eatery.status)}</p>
       </div>
