@@ -1,7 +1,6 @@
 "use client";
 
 import { client } from "@/sanity/lib/client";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import DropDown from "../components/Dropdown";
 import EateryCard from "../components/Eatery";
@@ -12,7 +11,7 @@ async function getEateries({filterString, sortString}) {
     sortString = "length(itemsHad)"
   }
 
-  const query1 = `*[_type == "restaurant" && status == 0${filterString}] | order(${sortString}) {
+  const query1 = `*[_type == "restaurant" && status > 3${filterString}] | order(${sortString}) {
     name,
     address,
     status,
@@ -30,7 +29,7 @@ async function getEateries({filterString, sortString}) {
     sortString = "length(itemsPlanned)"
   }
 
-  const query2 = `*[_type == "restaurant" && status != 0${filterString}] | order(${sortString}) {
+  const query2 = `*[_type == "restaurant" && status < 4${filterString}] | order(${sortString}) {
     name,
     address,
     status,
@@ -54,16 +53,14 @@ export default function Eats() {
 
   useEffect(() => {
     const filterString = (filter === "None") ? "" : ` && "${filter}" in type[].name`;
-    console.log(filterString);
     let sortString;
     if (sort === "Name") {
       sortString = "name asc";
     } else if (sort === "Status") {
-      sortString = "status asc";
+      sortString = "status desc";
     } else {
       sortString = "items"
     }
-    console.log(sortString)
 
     async function fetchData() {
       const content = await getEateries({filterString, sortString});
@@ -96,6 +93,9 @@ export default function Eats() {
             <Loader />
           </div>
         }
+        {eateries[0].length == 0 && !loading &&
+            <div className="border border-dashed border-white p-4 rounded-md italic">No Results</div>
+        }
         {eateries[0].map((eatery) => (
           <EateryCard key={eatery.slug} rest={eatery} />
         ))}
@@ -106,6 +106,9 @@ export default function Eats() {
           <div className="p-24">
             <Loader />
           </div>
+        }
+        {eateries[1].length == 0 && !loading &&
+            <div className="border border-dashed border-white p-4 rounded-md italic">No Results</div>
         }
         {eateries[1].map((eatery) => (
           <EateryCard key={eatery.slug} rest={eatery} />

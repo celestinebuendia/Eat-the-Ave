@@ -1,5 +1,7 @@
 export const RESTSTATUS = [
-  {title: "Been To", value: 0}, 
+  {title: "I Live Here", value: 6},
+  {title: "My Secret Hangout", value: 5},
+  {title: "Tried", value: 4},
   {title: "Want To", value: 3}, 
   {title: "Maybe", value: 2}, 
   {title: "Meh", value: 1}
@@ -34,6 +36,11 @@ export default {
       title: "Food Type",
       type: "array",
       of: [{type: "foodType"}],
+    },
+    {
+      name: "thoughts",
+      title: "Thoughts",
+      type: "text"
     },
     {
       name: "itemsHad",
