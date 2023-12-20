@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 
 async function getEateries({filterString, sortString}) {
   if (sortString === "items") {
-    sortString = "length(itemsHad)"
+    sortString = "itemsHad == null, length(itemsHad) desc";
   }
 
   const query1 = `*[_type == "restaurant" && status > 3${filterString}] | order(${sortString}) {
@@ -22,11 +22,10 @@ async function getEateries({filterString, sortString}) {
     itemsPlanned,
     "slug":slug.current
   }`;
-  console.log(query1);
   const pastEateries = await client.fetch(query1);
 
-  if (sortString === "length(itemsHad)") {
-    sortString = "length(itemsPlanned)"
+  if (sortString === "itemsHad == null, length(itemsHad) desc") {
+    sortString = "itemsPlanned == null, length(itemsPlanned) desc";
   }
 
   const query2 = `*[_type == "restaurant" && status < 4${filterString}] | order(${sortString}) {
