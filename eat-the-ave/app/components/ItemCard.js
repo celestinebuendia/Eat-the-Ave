@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getRatingString } from "../utils/stringUtils";
 import TypeIcon from "./TypeIcon";
 
@@ -7,9 +8,9 @@ export default function ItemCard({item}) {
       <div className="flex justify-between">
         <div className="space-y-2">
           <h2 className="text-lg font-semibold">{item.name}</h2>
-          <p className="line-clamp-1 text-sm text-primary-400">
+          <Link href={`/eatery/${item.restaurant.slug}`} className="line-clamp-1 text-sm text-primary-400 md:hover:text-primary-500">
               {item.restaurant.name}
-          </p>
+          </Link>
         </div>
         <div className="space-y-2">
           <div className="flex items-center line-clamp-1 justify-end">

@@ -3,6 +3,7 @@ import { Kaushan_Script } from "next/font/google";
 import { Square_Peg } from 'next/font/google';
 import CheckBox from './components/CheckBox';
 import { client } from "@/sanity/lib/client";
+import Link from 'next/link';
 
 const rocksalt = Rock_Salt({ subsets: ['latin'], weight: '400' })
 const satisfy = Kaushan_Script({ subsets: ['latin'], weight: '400' })
@@ -15,6 +16,7 @@ export default function Home() {
         <p className={satisfy.className}>Celestine</p>
         <p className={rocksalt.className}>Eats the Ave</p>
       </div>
+      <p className="text-center mb-24">One person's quest to eat every food item on the Ave that matches their very specific tastes...</p>
       <div className={squarepeg.className}>
         <Checklist />
       </div>
@@ -28,6 +30,7 @@ async function getEateries() {
     status,
     itemsHad[]->,
     itemsPlanned[]->,
+    "slug":slug.current
   }`;
 
   const eateries = await client.fetch(query);
@@ -37,7 +40,7 @@ async function getEateries() {
 export async function Checklist() {
   const eateries = await getEateries();
   return (
-    <div className="m-20 mt-28">
+    <div className="m-20 mt-20">
       <div className="flex">
         <div className="border border-r-0 w-20"/>
         <p className="border text-center pr-20 pt-4 text-5xl w-full">Checklist</p>     
@@ -47,10 +50,10 @@ export async function Checklist() {
         <div className="border border-t-0 py-3 px-4 text-3xl w-full">
           {eateries.map((eatery) => (
             <div>
-              <div className="flex items-center">
+              <Link href={`/eatery/${eatery.slug}`} className="flex items-center md:hover:text-primary-400">
                 <CheckBox checked={eatery.status > 3} />
-                <p className="ml-2">{eatery.name}</p>
-              </div>
+                <p href={`/eatery/${eatery.slug}`} className="ml-2">{eatery.name}</p>
+              </Link>
               <div className="ml-8">
                 {eatery.itemsHad !== null &&
                   eatery.itemsHad.map((item) => (

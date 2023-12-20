@@ -11,7 +11,10 @@ async function getMenuItems({filterString, sortString}) {
     tried,
     name,
     type,
-    restaurant->,
+    restaurant-> {
+      name,
+      "slug":slug.current
+    },
     rating,
     explanation
   }`;
@@ -22,7 +25,10 @@ async function getMenuItems({filterString, sortString}) {
     tried,
     name,
     type,
-    restaurant->,
+    restaurant-> {
+      name,
+      "slug":slug.current
+    },
     rating,
     explanation
   }`;
