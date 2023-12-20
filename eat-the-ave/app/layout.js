@@ -1,7 +1,7 @@
-import { Inter, Rock_Salt } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
-import Navbar from './components/Navbar'
 import Container from './components/Container'
+import Navbar from './components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
