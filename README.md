@@ -5,3 +5,5 @@
 There is the main page, which lists a checklist of all current entries in the database, directories of all restaurants and all food items in the database, and pages for each restaurant's information which are linked to in several places.
 
 Each food and restaurant are assigned categories based on Celestine's definition of major food groups, which can be filtered by in the directories.
+
+Currently includes: 13 eateries
