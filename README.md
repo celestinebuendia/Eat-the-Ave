@@ -6,4 +6,4 @@ There is the main page, which lists a checklist of all current entries in the da
 
 Each food and restaurant are assigned categories based on Celestine's definition of major food groups, which can be filtered by in the directories.
 
-Currently includes: 13 eateries
+Currently includes: 18 eateries
