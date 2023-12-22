@@ -5,7 +5,7 @@ import TypeIcon from "./TypeIcon";
 export default function ItemCard({item}) {
   return (
     <div className="flex flex-col justify-between border border-white p-4 rounded-md">
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <h2 className="text-lg font-semibold">{item.name}</h2>
           <Link href={`/eatery/${item.restaurant.slug}`} className="line-clamp-1 text-sm text-primary-400 md:hover:text-primary-500">
@@ -14,7 +14,7 @@ export default function ItemCard({item}) {
         </div>
         <div className="space-y-2">
           <div className="flex items-center justify-end">
-            <p className="mr-2">{item.type.name}</p> <TypeIcon type={item.type.name} />
+            <p className="mr-2 text-right">{item.type.name}</p> <TypeIcon type={item.type.name} />
           </div>
           <p className="text-sm text-primary-400 text-end">Rating: {getRatingString(item.rating, item.tried)}</p>
         </div>
