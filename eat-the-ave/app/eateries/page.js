@@ -86,7 +86,7 @@ export default function Eats() {
         </div>
       </div>
       <div className="py-4 space-y-4">
-        <p className="py-1 text-xl font-semibold">Places I've Eaten</p>
+        <p className="py-1 text-xl font-semibold text-center">Eateries Eaten At</p>
         {loading &&
           <div className="p-24">
             <Loader />
@@ -100,7 +100,7 @@ export default function Eats() {
         ))}
       </div>
       <div className="py-4 space-y-4">
-        <p className="py-1 text-xl font-semibold">Future Eateries</p>
+        <p className="py-1 text-xl font-semibold text-center">Prospective Eateries</p>
         {loading &&
           <div className="p-24">
             <Loader />
