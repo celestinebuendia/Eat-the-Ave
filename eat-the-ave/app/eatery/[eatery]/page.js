@@ -23,7 +23,7 @@ export default async function EateryPage({ params }) {
   return (
     <div>
       <EateryHeader eatery={eatery[0]}/>
-      <div className="border border-white p-5 rounded-md mx-16 my-6">
+      <div className="border border-white p-5 rounded-md mx-16 my-6 overflow-hidden hover:overflow-x-scroll">
         {eatery[0].thoughts}
       </div>
       <div className="grid grid-cols-2 sm:block sm:space-y-6">
@@ -64,7 +64,7 @@ export function EateryHeader({eatery}) {
   const stringStatus = eatery.status > 3 ? "Visited" : "Unvisited";
   return (
     <div className="grid grid-cols-3 space-x-4 sm:grid-cols-5">
-      <div className="border border-white p-4 rounded-md flex justify-between col-span-2 sm:flex-col sm:col-span-3">
+      <div className="border border-white p-4 rounded-md flex justify-between col-span-2 sm:flex-col sm:col-span-3 overflow-hidden hover:overflow-x-scroll">
         <div className="flex flex-col justify-center space-y-3">
           <h2 className="text-4xl font-semibold">{eatery.name}</h2>
           <p className="text-primary-400">{eatery.address}</p>
@@ -77,7 +77,7 @@ export function EateryHeader({eatery}) {
           ))}
         </div>
       </div>
-      <div className="flex flex-col justify-center border border-white p-4 rounded-md space-y-2 text-center sm:col-span-2 sm:p-2">
+      <div className="flex flex-col justify-center border border-white p-4 rounded-md space-y-2 text-center sm:col-span-2 sm:p-2 overflow-hidden hover:overflow-x-scroll">
         <p className="text-2xl font-semibold">Status: {stringStatus}</p>
         <p className="text-primary-400 text-lg">{getStatusString(eatery.status)}</p>
       </div>
