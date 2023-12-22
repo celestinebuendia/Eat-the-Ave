@@ -77,7 +77,7 @@ export function EateryHeader({eatery}) {
           ))}
         </div>
       </div>
-      <div className="flex flex-col justify-center border border-white p-4 rounded-md space-y-2 text-center sm:col-span-2">
+      <div className="flex flex-col justify-center border border-white p-4 rounded-md space-y-2 text-center sm:col-span-2 sm:p-2">
         <p className="text-2xl font-semibold">Status: {stringStatus}</p>
         <p className="text-primary-400 text-lg">{getStatusString(eatery.status)}</p>
       </div>
