@@ -8,6 +8,13 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      'sm': {'max':'640px'},
+      'md': {'max':'768px'},
+      'lg': {'max':'1024px'},
+      'xl': {'max':'1280px'},
+      '2xl': {'max':'1536px'},
+    },
     colors: {
       transparent: "transparent",
       current: "currentColor",

@@ -66,13 +66,13 @@ export default function Eats() {
   return (
     <div>
       <div className="space-y-2">
-        <div className="flex space-x-5 py-4 justify-end">
-          <div className="flex">
-            <p className="black px-2 py-1.5">Sort by</p>
+        <div className="flex space-x-5 py-4 justify-end sm:flex-col sm:space-y-4">
+          <div className="flex justify-end">
+            <p className="black px-2 py-1.5 line-clamp-1">Sort by</p>
             <DropDown options={["Name", "Rating", "Restaurant"]} setOption={setSort} selected={sort} />
           </div>
-          <div className="flex">
-            <p className="black px-2 py-1.5">Filter</p>
+          <div className="flex justify-end">
+            <p className="black px-2 py-1.5 line-clamp-1">Filter</p>
             <DropDown 
               options={["None", "Asian Noodle Soup", "Cold Sweet Drink", "Meat Stuff", "Sweet Treat", "Other Asian", "Other Other"]} 
               setOption={setFilter}
@@ -80,30 +80,30 @@ export default function Eats() {
             />
           </div>
         </div>
-        <div className="space-y-4 py-4">
-          <p className="py-1 text-xl font-semibold">Eats Eaten</p>
-          {loading &&
-            <div className="p-24">
-              <Loader />
-            </div>
-          }
-          {items[0].length == 0 && !loading &&
-            <div className="border border-dashed border-white p-4 rounded-md italic">No Results</div>
-          }
+        <p className="py-4 text-xl font-semibold text-center">Eats Eaten</p>
+        {loading &&
+          <div className="p-24">
+            <Loader />
+          </div>
+        }
+        {items[0].length == 0 && !loading &&
+          <div className="border border-dashed border-white p-4 rounded-md italic">No Results</div>
+        }
+        <div className="pb-4 grid grid-cols-2 gap-6 sm:block sm:space-y-4">
           {items[0].map((item) => (
             <ItemCard key={item.name} item={item}/>
           ))}
         </div>
-        <div className="space-y-4 py-4">
-          <p className="py-1 text-xl font-semibold">Eats to be Eaten</p>
-          {loading &&
-            <div className="p-24">
-              <Loader />
-            </div>
-          }
-          {items[1].length == 0 && !loading &&
-            <div className="border border-dashed border-white p-4 rounded-md italic">No Results</div>
-          }
+        <p className="py-4 text-xl font-semibold text-center">Eats to be Eaten</p>
+        {loading &&
+          <div className="p-24">
+            <Loader />
+          </div>
+        }
+        {items[1].length == 0 && !loading &&
+          <div className="border border-dashed border-white p-4 rounded-md italic">No Results</div>
+        }
+        <div className="pb-4 grid grid-cols-2 gap-6 sm:block sm:space-y-4">
           {items[1].map((item) => (
             <ItemCard key={item.name} item={item}/>
           ))}
