@@ -40,17 +40,17 @@ async function getEateries() {
 export async function Checklist() {
   const eateries = await getEateries();
   return (
-    <div className="m-20 mt-20">
+    <div className="m-20 sm:mx-5">
       <div className="flex">
-        <div className="border border-r-0 w-20"/>
-        <p className="border text-center pr-20 pt-4 text-5xl w-full">Checklist</p>     
+        <div className="border border-r-0 w-20 sm:w-16"/>
+        <p className="border text-center pr-20 sm:pr-15 pt-4 text-5xl w-full">Checklist</p>     
       </div>
       <div className="flex">
-        <div className="w-20 border border-r-0 border-t-0" />
+        <div className="w-20 sm:w-16 border border-r-0 border-t-0" />
         <div className="border border-t-0 py-3 px-4 text-3xl w-full">
           {eateries.map((eatery) => (
             <div>
-              <Link href={`/eatery/${eatery.slug}`} className="flex items-center md:hover:text-primary-400">
+              <Link href={`/eatery/${eatery.slug}`} className="flex items-center hover:text-primary-400">
                 <CheckBox checked={eatery.status > 3} />
                 <p href={`/eatery/${eatery.slug}`} className="ml-2">{eatery.name}</p>
               </Link>
@@ -76,7 +76,6 @@ export async function Checklist() {
           ))}
         </div>
       </div>
- 
     </div>
   );
 }

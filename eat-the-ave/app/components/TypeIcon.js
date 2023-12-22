@@ -16,7 +16,9 @@ export default function TypeIcon({type}) {
     return <IoIceCreamSharp className="text-white text-lg flex-shrink-0"/>;
   } else if (type === "Other Asian") {
     return <GiChopsticks className="text-white text-lg flex-shrink-0"/>;
-  } else {
+  } else if (type === "Other Other") {
     return <FaStore className="text-white text-lg flex-shrink-0"/>;
+  } else {
+    return <div className="-mr-2"></div>;
   }
 }

@@ -1,6 +1,3 @@
-import Container from "@/app/components/Container";
-import EateryCard from "@/app/components/Eatery";
-import ItemCard from "@/app/components/ItemCard";
 import TypeIcon from "@/app/components/TypeIcon";
 import { getRatingString, getStatusString } from "@/app/utils/stringUtils";
 import { client } from "@/sanity/lib/client";

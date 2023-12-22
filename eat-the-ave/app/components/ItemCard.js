@@ -8,7 +8,7 @@ export default function ItemCard({item}) {
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <h2 className="text-lg font-semibold">{item.name}</h2>
-          <Link href={`/eatery/${item.restaurant.slug}`} className="line-clamp-1 text-sm text-primary-400 md:hover:text-primary-500">
+          <Link href={`/eatery/${item.restaurant.slug}`} className="line-clamp-1 text-sm text-primary-400 hover:text-primary-500">
               {item.restaurant.name}
           </Link>
         </div>

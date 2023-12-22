@@ -71,13 +71,13 @@ export default function Eats() {
 
   return (
     <div className="space-y-2">
-      <div className="flex space-x-5 py-4 justify-end">
-        <div className="flex">
-          <p className="black px-2 py-1.5">Sort by</p>
+      <div className="flex space-x-5 py-4 justify-end sm:flex-col sm:space-y-4">
+        <div className="flex justify-end">
+          <p className="black px-2 py-1.5 line-clamp-1">Sort by</p>
           <DropDown options={["Name", "Status", "Menu Items"]} setOption={setSort} selected={sort} />
         </div>
-        <div className="flex">
-          <p className="black px-2 py-1.5">Filter</p>
+        <div className="flex justify-end">
+          <p className="black px-2 py-1.5 line-clamp-1">Filter</p>
           <DropDown 
             options={["None", "Asian Noodle Soup", "Cold Sweet Drink", "Meat Stuff", "Sweet Treat", "Other Asian", "Other Other"]} 
             setOption={setFilter}
